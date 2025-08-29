@@ -72,6 +72,7 @@
             text-overflow: ellipsis;
             font-family:Verdana, Geneva, Tahoma, sans-serif;
             overflow: hidden;
+            font-size: 20px;
             background-color: white;
         }
 
@@ -213,7 +214,7 @@
                     animacaoAtual.cancel();
                     section.animate
                 }
-                const velocidadefinal = velocidade * 1000;
+                const velocidadefinal = velocidade1 * 1000;
                 const divWidthClient = div.clientWidth;
                 let result = sectionWidthClient/2 + divWidthClient/2 + divWidthClient/10;
                 animacaoAtual = div.animate([
