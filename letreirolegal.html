@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Letreiro Dinâmico</title>
+    <style>
+            
+        body {
+            background-color: gray;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        header {
+            gap: 10px;
+            border-radius: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 90vw;
+            border: 10px rgb(192, 192, 192) solid ;
+            background-color: rgb(192, 192, 192);
+        }
+
+        section {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 90vw;
+            background-color: black;
+            border-radius: 20px;
+            margin-top: 10px;
+            overflow: hidden;
+            border: 10px, white solid;
+        }
+
+        div {
+            color: white;
+            display: inline;
+            font-family: Consolas;
+            font-size: 150px;
+            font-weight: 1000;
+            position: relative; 
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        input {
+            border-radius: 10px;
+            border: 0px;
+            height: 50px;
+            width: 50%;
+            font-family:Verdana, Geneva, Tahoma, sans-serif;
+            font-size: 20px;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            background-color: white;
+        }
+
+        #velocidade {
+            width: 20%;
+        }
+
+        button {
+            border-radius: 10px;
+            border: 0px;
+            width: 20%;
+            height: 50px;
+            text-overflow: ellipsis;
+            font-family:Verdana, Geneva, Tahoma, sans-serif;
+            font-size: 20px;
+            overflow: hidden;
+            background-color: white;
+        }
+
+        img {
+            height: 50px;
+            width: 50px;
+            border-radius: 10px;
+            background-color: white;
+            
+        }
+        #tamanho {
+            width: 20%;
+        }
+        #cor {
+            width: 20%;
+        }
+
+    </style>
+</head>
+<body id="body">
+    <header>
+        <input type="text" placeholder="Texto" id="input">
+        <input type="number" placeholder="Tamanho (padrão 100)" id="tamanho">
+        <input type="text" placeholder="Cor" id="cor" list="opções">
+        <datalist id="opções">
+            <option>Vermelho</option>
+            <option>Laranja</option>
+            <option>Amarelo</option>
+            <option>Verde</option>
+            <option>Ciano</option>
+            <option>Azul Claro</option>
+            <option>Azul</option>
+            <option>Roxo</option>
+            <option>Rosa</option>
+            <option>Marrom</option>
+        </datalist>
+        <input type="number" placeholder="velocidade (em segundos)" id="velocidade">
+        <button id="button">enviar</button>
+        <img src="https://images.icon-icons.com/1369/PNG/512/-fullscreen_89822.png" id="img">
+    </header>
+    <section id="section">
+        <div id="div"></div>
+    </section>
+
+    <script>
+        const body = document.getElementById('body');
+        const div = document.getElementById('div');
+        const section = document.getElementById('section');
+        const input = document.getElementById('input');
+        const button = document.getElementById('button');
+        const img = document.getElementById('img');
+
+        button.addEventListener('click', function() {
+            button.style.backgroundColor = "rgb(194, 194, 194)";
+            button.style.border = "5px rgb(82, 82, 82) solid"
+            setTimeout(() => {
+            button.style.backgroundColor = "white";
+            button.style.border = "0px"
+            }, 75)
+            const input1 = input.value;
+            div.textContent = input1
+            const textoDoDiv = div.textContent
+            const sectionWidthClient = section.clientWidth;
+            const input3 = document.getElementById('velocidade')
+            const velocidade = input3.value
+            const inputcor = document.getElementById('cor');
+            const cor = inputcor.value;
+            const tamanho = document.getElementById('tamanho')
+            const size = tamanho.value
+            if (cor ==='Vermelho') {
+                div.style.color = 'red'
+            }
+            if (cor ==='Laranja') {
+                div.style.color = 'orange'
+            }
+            if (cor ==='Amarelo') {
+                div.style.color = 'yellow'
+            }
+            if (cor ==='Verde') {
+                div.style.color = 'green'
+            }
+            if (cor ==='Ciano') {
+                div.style.color = 'cyan'
+            }
+            if (cor ==='Azul Claro') {
+                div.style.color = 'rgb(0, 200, 255)'
+            }
+            if (cor ==='Azul') {
+                div.style.color = 'blue'
+            }
+            if (cor ==='Roxo') {
+                div.style.color = 'rgb(183, 0, 255)'
+            }
+            if (cor ==='Rosa') {
+                div.style.color = 'rgb(255, 0, 242)'
+            }
+            if (cor ==='Marrom') {
+                div.style.color = 'rgb(102, 58, 0)'
+            }
+            let animacaoAtual = null;
+            if (!input1) {
+            alert("Por favor, insira um texto.");
+            }
+            if (isNaN(size) || size <= 0) {
+                div.style.fontSize = '100px';
+                const divheightClient = div.clientHeight;
+                altura = divheightClient * 1.5
+                section.style.height = `${altura}px`
+                if (isNaN(velocidade) || velocidade <= 0) {
+                alert("Por favor, insira uma velocidade válida (número maior que 0).");
+                return;
+                }
+                if (animacaoAtual) {
+                    animacaoAtual.cancel();
+                }
+                const velocidadefinal = velocidade * 1000;
+                const divWidthClient = div.clientWidth;
+                let result = sectionWidthClient/2 + divWidthClient/2 + divWidthClient/10;
+                animacaoAtual = div.animate([
+                    { transform: `translateX(${result}px)` },
+                    { transform: `translateX(-${result}px)` }
+                ], {
+                    duration: velocidadefinal,
+                    easing: 'linear',
+                    iterations: Infinity
+                });
+                } else {
+                    div.style.fontSize = `${size}px`;
+                    const divheightClient = div.clientHeight;
+                    altura = divheightClient * 1.5
+                    section.style.height = `${altura}px`
+                    if (isNaN(velocidade) || velocidade <= 0) {
+                    alert("Por favor, insira uma velocidade válida (número maior que 0).");
+                    return;
+                }
+                if (animacaoAtual) {
+                    animacaoAtual.cancel();
+                }
+                const velocidadefinal = velocidade * 1000;
+                const divWidthClient = div.clientWidth;
+                let result = sectionWidthClient/2 + divWidthClient/2 + divWidthClient/10;
+                animacaoAtual = div.animate([
+                    { transform: `translateX(${result}px)` },
+                    { transform: `translateX(-${result}px)` }
+                ], {
+                    duration: velocidadefinal,
+                    easing: 'linear',
+                    iterations: Infinity
+                });
+            }
+        });
+        img.addEventListener('click', () => {
+            if (section.requestFullscreen) {
+            section.requestFullscreen();
+            body.style.zoom = '200%'
+            } else if (section.mozRequestFullScreen) {
+            section.mozRequestFullScreen();
+            body.style.zoom = '200%'
+            } else if (section.webkitRequestFullscreen) {
+            section.webkitRequestFullscreen();
+            body.style.zoom = '200%'
+            } else if (section.msRequestFullscreen) {
+            section.msRequestFullscreen();
+            body.style.zoom = '200%'
+            }
+        });
+        document.addEventListener('fullscreenchange', () => {
+            if (!document.fullscreenElement) {
+                body.style.zoom = '100%'
+            }
+            });
+    </script>
+</body>
+</html>
