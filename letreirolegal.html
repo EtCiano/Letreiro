@@ -3,250 +3,118 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Letreiro Dinâmico</title>
+    <link rel="icon" href="https://pbs.twimg.com/media/D_DV3ZXXYAAznP5.png">
+    <title>SilkSong em:</title>
     <style>
+
+        @font-face {   
+font-family: 'Lemon Milk';      
+src: url('https://fonts.cdnfonts.com/css/lemonmilk');      
+font-weight: normal;     
+font-style: normal;
+
+}
+ body {      
+background-image: url(https://viciados.net/wp-content/uploads/2025/01/Hollow-Knight-Silksong-2025.webp);           
+background-size: cover;        
+display: flex;            
+flex-direction: column;      
+align-items: center;
+}
+ div {    
+display: flex;     
+font-family: 'Lucida Console', 'Courier New', Courier, monospace;          
+font-weight: 900;            
+text-shadow: 
+            -1px -1px 5px #000000,
+            1px 1px 5px #000000;
             
-        body {
-            background-color: gray;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-        }
-
-        header {
-            gap: 10px;
-            border-radius: 20px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            width: 90vw;
-            border: 10px rgb(192, 192, 192) solid ;
-            background-color: rgb(192, 192, 192);
-        }
-
-        section {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            width: 90vw;
-            background-color: black;
-            border-radius: 20px;
-            margin-top: 10px;
-            overflow: hidden;
-            border: 10px, white solid;
-        }
-
-        div {
-            color: white;
-            display: inline;
-            font-family: Consolas;
-            font-size: 150px;
-            font-weight: 1000;
-            position: relative; 
-            text-overflow: ellipsis;
-            white-space: nowrap;
-        }
-
-        input {
-            border-radius: 10px;
-            border: 0px;
-            height: 50px;
-            width: 50%;
-            font-family:Verdana, Geneva, Tahoma, sans-serif;
-            font-size: 20px;
-            text-overflow: ellipsis;
-            overflow: hidden;
-            background-color: white;
-        }
-
-        #velocidade {
-            width: 20%;
-        }
-
-        button {
-            border-radius: 10px;
-            border: 0px;
-            width: 20%;
-            height: 50px;
-            text-overflow: ellipsis;
-            font-family:Verdana, Geneva, Tahoma, sans-serif;
-            overflow: hidden;
-            font-size: 20px;
-            background-color: white;
-        }
-
-        img {
-            height: 50px;
-            width: 50px;
-            border-radius: 10px;
-            background-color: white;
-            
-        }
-        #tamanho {
-            width: 20%;
-        }
-        #cor {
-            width: 20%;
-        }
-
-    </style>
+font-size: 50px;           
+color: #ffffff;        
+text-align: center;            
+margin: 30px;
+}
+img {
+    height: 300px;
+    width: 300px;
+    border-radius: 20px;
+}
+</style>
 </head>
-<body id="body">
-    <header>
-        <input type="text" placeholder="Texto" id="input">
-        <input type="number" placeholder="Tamanho (padrão 100)" id="tamanho">
-        <input type="text" placeholder="Cor" id="cor" list="opções">
-        <datalist id="opções">
-            <option>Vermelho</option>
-            <option>Laranja</option>
-            <option>Amarelo</option>
-            <option>Verde</option>
-            <option>Ciano</option>
-            <option>Azul Claro</option>
-            <option>Azul</option>
-            <option>Roxo</option>
-            <option>Rosa</option>
-            <option>Marrom</option>
-        </datalist>
-        <input type="number" placeholder="velocidade (em segundos)" id="velocidade">
-        <button id="button">enviar</button>
-        <img src="https://images.icon-icons.com/1369/PNG/512/-fullscreen_89822.png" id="img">
-    </header>
-    <section id="section">
-        <div id="div"></div>
+<body>
+    <div id="relogio"></div>
+    <div id="restante">erro</div>
+    <section>
+        <img src="https://media.tenor.com/ZwbbonOvjvEAAAAi/hollow-knight-hollow-knight-silksong.gif" alt="">
+        <img src="https://media1.tenor.com/m/hcWUL0Us0cEAAAAC/silksong-hollow-knight.gif" alt="">
+        <img src="https://media1.tenor.com/m/Eki_5HXRYiYAAAAd/hollow-knight.gif" alt="">
+        <img src="https://media.tenor.com/kyewdzKMUHcAAAAj/dink-donk-hornet.gif" alt="">
+        <img src="https://media1.tenor.com/m/__Ah-tEOzLEAAAAd/silksong-hornet.gif" alt="">
+        <img src="https://media1.tenor.com/m/UfY7EDTlWxAAAAAd/silksong-slap.gif" alt="">
     </section>
-
     <script>
-        const body = document.getElementById('body');
-        const div = document.getElementById('div');
-        const section = document.getElementById('section');
-        const input = document.getElementById('input');
-        const button = document.getElementById('button');
-        const img = document.getElementById('img');
 
-        button.addEventListener('click', function() {
-            button.style.backgroundColor = "rgb(194, 194, 194)";
-            button.style.border = "5px rgb(82, 82, 82) solid"
-            setTimeout(() => {
-            button.style.backgroundColor = "white";
-            button.style.border = "0px"
-            }, 75)
-            const input1 = input.value;
-            div.textContent = input1
-            if (!input1) {
-            div.textContent = 'Texto de teste';
-            }
-            const sectionWidthClient = section.clientWidth;
-            const input3 = document.getElementById('velocidade')
-            const velocidade = input3.value
-            const inputcor = document.getElementById('cor');
-            const cor = inputcor.value;
-            const tamanho = document.getElementById('tamanho')
-            const size = tamanho.value
-            if (cor ==='Vermelho') {
-                div.style.color = 'red'
-            }
-            if (cor ==='Laranja') {
-                div.style.color = 'orange'
-            }
-            if (cor ==='Amarelo') {
-                div.style.color = 'yellow'
-            }
-            if (cor ==='Verde') {
-                div.style.color = 'rgb(0, 255, 0)'
-            }
-            if (cor ==='Ciano') {
-                div.style.color = 'cyan'
-            }
-            if (cor ==='Azul Claro') {
-                div.style.color = 'rgb(0, 200, 255)'
-            }
-            if (cor ==='Azul') {
-                div.style.color = 'blue'
-            }
-            if (cor ==='Roxo') {
-                div.style.color = 'rgb(183, 0, 255)'
-            }
-            if (cor ==='Rosa') {
-                div.style.color = 'rgb(255, 0, 242)'
-            }
-            if (cor ==='Marrom') {
-                div.style.color = 'rgb(102, 58, 0)'
-            }
-            let animacaoAtual = null;
-            
-            if (isNaN(size) || size <= 0) {
-                div.style.fontSize = '100px';
-                const divheightClient = div.clientHeight;
-                altura = divheightClient * 1.5
-                section.style.height = `${altura}px`
-                if (isNaN(velocidade) || velocidade <= 0) {
-                velocidade1 = 10
-                } else {
-                    velocidade1 = velocidade
-                }
-                if (animacaoAtual) {
-                    animacaoAtual.cancel();
-                }
-                const velocidadefinal = velocidade1 * 1000;
-                const divWidthClient = div.clientWidth;
-                let result = sectionWidthClient/2 + divWidthClient/2 + divWidthClient/10;
-                animacaoAtual = div.animate([
-                    { transform: `translateX(${result}px)` },
-                    { transform: `translateX(-${result}px)` }
-                ], {
-                    duration: velocidadefinal,
-                    easing: 'linear',
-                    iterations: Infinity
-                });
-                } else {
-                    div.style.fontSize = `${size}px`;
-                    const divheightClient = div.clientHeight;
-                    altura = divheightClient * 1.5
-                    section.style.height = `${altura}px`
-                if (isNaN(velocidade) || velocidade <= 0) {
-                velocidade1 = 10
-                } else {
-                    velocidade1 = velocidade
-                }
-                if (animacaoAtual) {
-                    animacaoAtual.cancel();
-                    section.animate
-                }
-                const velocidadefinal = velocidade1 * 1000;
-                const divWidthClient = div.clientWidth;
-                let result = sectionWidthClient/2 + divWidthClient/2 + divWidthClient/10;
-                animacaoAtual = div.animate([
-                    { transform: `translateX(${result}px)` },
-                    { transform: `translateX(-${result}px)` }
-                ], {
-                    duration: velocidadefinal,
-                    easing: 'linear',
-                    iterations: Infinity
-                });
-            }
-        });
-        img.addEventListener('click', () => {
-            if (section.requestFullscreen) {
-            section.requestFullscreen();
-            body.style.zoom = '200%'
-            } else if (section.mozRequestFullScreen) {
-            section.mozRequestFullScreen();
-            body.style.zoom = '200%'
-            } else if (section.webkitRequestFullscreen) {
-            section.webkitRequestFullscreen();
-            body.style.zoom = '200%'
-            } else if (section.msRequestFullscreen) {
-            section.msRequestFullscreen();
-            body.style.zoom = '200%'
-            }
-        });
-        document.addEventListener('fullscreenchange', () => {
-            if (!document.fullscreenElement) {
-                body.style.zoom = '100%'
-            }
-            });
+        
+function atualizarRelogio() {
+
+const defsegundos = 1000;
+const defminutos = defsegundos * 60;
+const defhoras = defminutos * 60;  
+const defdias = defhoras * 24;
+    
+    
+const SilkSong = new 
+Date("2025-09-04T11:00:00").getTime();
+    
+const agora = new Date();
+const mes = (agora.getMonth() + 1).toString().padStart(2, '0');
+const ano = agora.getFullYear();
+const dia = agora.getDate().toString().padStart(2, '0');
+const horas = agora.getHours().toString().padStart(2, '0');
+const minutos = agora.getMinutes().toString().padStart(2, '0');
+const segundos = agora.getSeconds().toString().padStart(2, '0');
+const agoramilli = agora.getTime();
+console.log("agoramilli: " + agoramilli);
+console.log("silksong: " + SilkSong);
+
+    
+const dataFormatada = `${dia}/${mes}/${ano}`;
+    
+const horaFormatada = `${horas}:${minutos}:${segundos}`;
+    
+    
+const Relogio = document.getElementById('relogio')
+Relogio.textContent = 'hoje é dia ' + dataFormatada + ' - ' + horaFormatada;
+
+let diferenca = SilkSong - agoramilli;
+
+    
+let diasRestantes = Math.floor(diferenca / defdias);
+    diferenca %= defdias;
+
+    
+let horasRestantes = Math.floor(diferenca / defhoras).toString().padStart(2, '0');
+    diferenca %= defhoras;
+
+    
+let minutosRestantes = Math.floor(diferenca / defminutos).toString().padStart(2, '0');
+    diferenca %= defminutos;
+
+    
+let segundosRestantes = Math.floor(diferenca / defsegundos).toString().padStart(2, '0');
+    
+    
+const restante = document.getElementById('restante');
+    if (SilkSong < agoramilli) {
+        restante.textContent = 'SilkSong já foi lançado!';
+    } else { 
+        if (diasRestantes <= 0) {
+        restante.textContent = `Faltam ${horasRestantes}:${minutosRestantes}:${segundosRestantes} para SilkSong`;
+    } else {
+    restante.textContent = `Faltam ${diasRestantes} dias e ${horasRestantes}:${minutosRestantes}:${segundosRestantes} para SilkSong`;
+        }}}
+        atualizarRelogio();
+        setInterval(atualizarRelogio, 1000);
     </script>
 </body>
 </html>
